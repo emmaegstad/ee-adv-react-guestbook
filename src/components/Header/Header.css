@@ -1,0 +1,17 @@
+.Header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 20vh;
+  background-color: cornflowerblue;
+}
+
+.header-title {
+  margin: 0;
+}
+
+.header-text {
+  margin: 0;
+}

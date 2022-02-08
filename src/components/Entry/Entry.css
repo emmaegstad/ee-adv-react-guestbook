@@ -1,0 +1,8 @@
+.Entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  padding: 1vh;
+  width: 20vw;
+}

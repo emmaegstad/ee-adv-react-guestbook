@@ -28,3 +28,38 @@ test('should render header and sign-in form', () => {
   expect(msgInput).toBeInTheDocument();
   expect(button).toBeInTheDocument();
 });
+
+test('should render entry upon submit', () => {
+  render(
+    <UserProvider>
+      <App />
+    </UserProvider>
+  );
+
+  const button = screen.getByRole('button', { name: /submit/i });
+  const nameInput = screen.getByRole('textbox', { name: /guest name/i });
+  const msgInput = screen.getByRole('textbox', { name: /guest message/i });
+
+  userEvent.type(nameInput, 'Emma');
+  userEvent.type(msgInput, 'My awesome message');
+  userEvent.click(button);
+
+  expect(screen.getByRole('heading', { name: /Emma/i })).toBeInTheDocument();
+  expect(screen.getByText(/My awesome message/i)).toBeInTheDocument();
+});
+
+test('should render logout button upon submit', () => {
+  render(
+    <UserProvider>
+      <App />
+    </UserProvider>
+  );
+
+  const button = screen.getByRole('button', { name: /submit/i });
+  const nameInput = screen.getByRole('textbox', { name: /guest name/i });
+
+  userEvent.type(nameInput, 'Emma');
+  userEvent.click(button);
+
+  expect(screen.getByText(/Not Emma?/i)).toBeInTheDocument();
+});

@@ -2,5 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 1vh;
+  background-color: cornflowerblue;
+  padding: 0 4vh 4vh 4vh;
+  border-radius: 5px;
 }

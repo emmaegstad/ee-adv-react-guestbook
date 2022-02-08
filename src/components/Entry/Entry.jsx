@@ -1,10 +1,10 @@
 import './Entry.css';
 
-function Entry() {
+function Entry({ name, message }) {
   return (
     <div className="Entry">
-      <h3 className="entry-name">Guest Name</h3>
-      <p className="entry-message">Guest Message</p>
+      <h3 className="entry-name">{name}</h3>
+      <p className="entry-message">{message}</p>
     </div>
   );
 }

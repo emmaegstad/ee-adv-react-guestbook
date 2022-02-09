@@ -22,5 +22,5 @@ test('should render entry upon submit', () => {
 
   const entryHeaders = screen.getAllByRole('heading');
 
-  expect(entryHeaders).toHaveLength(2);
+  expect(entryHeaders).toHaveLength(3);
 });

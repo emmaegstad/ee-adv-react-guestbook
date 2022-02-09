@@ -1,4 +1,10 @@
 .EntryList {
   display: flex;
-  gap: 5vh;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entry-list-entries {
+  display: flex;
+  gap: 2vw;
 }

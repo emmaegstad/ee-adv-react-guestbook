@@ -2,6 +2,7 @@ import './Form.css';
 import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import { useEntries } from '../../context/EntryContext';
+import { addEntry } from '../../services/entries';
 import EntryList from '../EntryList/EntryList';
 
 function Form() {
@@ -10,13 +11,21 @@ function Form() {
   const { entries, setEntries } = useEntries([]);
   const { user, setUser } = useUser();
 
-  function updateEntries() {
+  const updateEntries = async () => {
     if (!user) {
       setUser(name);
     }
-    setEntries([...entries, { name, message }]);
+    await addEntry(name, message);
     setMessage('');
-  }
+  };
+
+  //   function updateEntries() {
+  //     if (!user) {
+  //       setUser(name);
+  //     }
+  //     setEntries([...entries, { name, message }]);
+  //     setMessage('');
+  //   }
 
   const handleSubmit = (e) => {
     e.preventDefault();

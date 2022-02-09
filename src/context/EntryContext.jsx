@@ -10,11 +10,10 @@ const EntryProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getEntries();
-      console.log(data);
       setEntries(data);
     };
     fetchData();
-  }, []);
+  }, [entries]);
 
   return <EntryContext.Provider value={value}>{children}</EntryContext.Provider>;
 };

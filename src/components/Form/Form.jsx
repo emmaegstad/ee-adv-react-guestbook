@@ -24,6 +24,7 @@ function Form() {
 
   const handleLogout = () => {
     setUser('');
+    setName('');
   };
 
   return (
@@ -36,6 +37,7 @@ function Form() {
               Guest Name
             </label>
             <input
+              className="form-input"
               type="text"
               id="form-name"
               value={name}
@@ -48,12 +50,19 @@ function Form() {
           Guest Message
         </label>
         <textarea
+          className="form-input"
           id="form-message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         ></textarea>
-        <button>Submit</button>
-        {user && <span onClick={handleLogout}>Not {user}?</span>}
+        <div className="form-controls">
+          <button className="form-button">SUBMIT</button>
+          {user && (
+            <span className="form-logout" onClick={handleLogout}>
+              Not {user}?
+            </span>
+          )}
+        </div>
       </form>
       {entries && <EntryList entries={entries} name={user} />}
     </>

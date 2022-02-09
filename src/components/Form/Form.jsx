@@ -1,12 +1,13 @@
 import './Form.css';
 import { useState } from 'react';
-import { useUser } from '../../context/UserContext/UserContext';
+import { useUser } from '../../context/UserContext';
+import { useEntries } from '../../context/EntryContext';
 import EntryList from '../EntryList/EntryList';
 
 function Form() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
-  const [entries, setEntries] = useState([]);
+  const { entries, setEntries } = useEntries([]);
   const { user, setUser } = useUser();
 
   function updateEntries() {

@@ -15,17 +15,10 @@ function Form() {
     if (!user) {
       setUser(name);
     }
-    await addEntry(name, message);
+    const [resp] = await addEntry(name, message);
+    setEntries((prevState) => [...prevState, resp]);
     setMessage('');
   };
-
-  //   function updateEntries() {
-  //     if (!user) {
-  //       setUser(name);
-  //     }
-  //     setEntries([...entries, { name, message }]);
-  //     setMessage('');
-  //   }
 
   const handleSubmit = (e) => {
     e.preventDefault();

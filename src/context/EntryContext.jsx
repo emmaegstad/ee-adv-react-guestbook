@@ -13,7 +13,7 @@ const EntryProvider = ({ children }) => {
       setEntries(data);
     };
     fetchData();
-  }, [entries]);
+  }, []);
 
   return <EntryContext.Provider value={value}>{children}</EntryContext.Provider>;
 };

@@ -10,7 +10,7 @@ export async function addEntry(name, message) {
   return checkError(response);
 }
 
-export async function findById(id) {
-  const reponse = await client.from('guestbook').select('*').match({ id }).single();
-  return checkError(reponse);
+export async function deleteEntry(id) {
+  const response = await client.from('guestbook').delete().eq('id', id);
+  return checkError(response);
 }

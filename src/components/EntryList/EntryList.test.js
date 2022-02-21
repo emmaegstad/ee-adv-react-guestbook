@@ -11,7 +11,7 @@ test('should render entry upon submit', async () => {
     },
     {
       name: 'Michelle',
-      message: 'Hi',
+      message: 'Hi!',
     },
   ];
 

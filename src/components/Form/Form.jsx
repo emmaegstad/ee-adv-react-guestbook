@@ -1,21 +1,24 @@
 import './Form.css';
 import { useState } from 'react';
-import { useUser } from '../../context/UserContext/UserContext';
+import { useUser } from '../../context/UserContext';
+import { useEntries } from '../../context/EntryContext';
+import { addEntry } from '../../services/entries';
 import EntryList from '../EntryList/EntryList';
 
 function Form() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
-  const [entries, setEntries] = useState([]);
+  const { entries, setEntries } = useEntries([]);
   const { user, setUser } = useUser();
 
-  function updateEntries() {
+  const updateEntries = async () => {
     if (!user) {
       setUser(name);
     }
-    setEntries([...entries, { name, message }]);
+    const [resp] = await addEntry(name, message);
+    setEntries((prevState) => [...prevState, resp]);
     setMessage('');
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

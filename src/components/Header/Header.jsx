@@ -1,5 +1,5 @@
 import './Header.css';
-import { useUser } from '../../context/UserContext/UserContext';
+import { useUser } from '../../context/UserContext';
 
 function Header() {
   const { user } = useUser();

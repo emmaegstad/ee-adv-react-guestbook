@@ -1,10 +1,15 @@
 import './Entry.css';
 
-function Entry({ name, message }) {
+function Entry({ name, message, id, handleDelete }) {
   return (
     <div className="Entry">
-      <h3 className="entry-name">{name}</h3>
-      <p className="entry-message">{message}</p>
+      <button className="entry-delete" onClick={() => handleDelete(id)}>
+        ×
+      </button>
+      <div className="entry-fields">
+        <h3 className="entry-name">{name}</h3>
+        <p className="entry-message">{message}</p>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { UserProvider } from '../../context/UserContext/UserContext';
+import { UserProvider } from '../../context/UserContext';
+import { EntryProvider } from '../../context/EntryContext';
 import EntryList from '../EntryList/EntryList';
 
-test('should render entry upon submit', () => {
+test('should render entry upon submit', async () => {
   const entries = [
     {
       name: 'Emma',
@@ -16,11 +17,13 @@ test('should render entry upon submit', () => {
 
   render(
     <UserProvider>
-      <EntryList entries={entries} />
+      <EntryProvider>
+        <EntryList entries={entries} />
+      </EntryProvider>
     </UserProvider>
   );
 
-  const entryHeaders = screen.getAllByRole('heading');
+  const entryHeaders = await screen.findAllByRole('heading');
 
   expect(entryHeaders).toHaveLength(3);
 });

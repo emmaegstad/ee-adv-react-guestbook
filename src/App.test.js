@@ -25,7 +25,7 @@ test('should render header and sign-in form', () => {
   const loginButton = screen.getByRole('button', { name: /submit/i });
   userEvent.click(loginButton);
 
-  const header = screen.getByRole('heading', { name: /Guestbook/i });
+  const header = screen.getByRole('heading', { name: /guestbook/i });
   const formTitle = screen.getByRole('heading', { name: /sign here/i });
   const msgLabel = screen.getByLabelText(/Guest Message/i);
   const msgInput = screen.getByRole('textbox', { name: /guest message/i });

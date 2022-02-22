@@ -3,7 +3,7 @@ import { UserProvider } from '../../context/UserContext';
 import { EntryProvider } from '../../context/EntryContext';
 import EntryList from '../EntryList/EntryList';
 
-test('should render entry upon submit', async () => {
+test.skip('should render entry upon submit', async () => {
   const entries = [
     {
       name: 'Emma',

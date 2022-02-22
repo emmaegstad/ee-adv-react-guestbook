@@ -1,16 +1,22 @@
 import './App.css';
 import Home from './views/Home/Home';
-import { UserProvider } from './context/UserContext';
-import { EntryProvider } from './context/EntryContext';
+import Auth from './views/Auth/Auth';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
-      <UserProvider>
-        <EntryProvider>
-          <Home />
-        </EntryProvider>
-      </UserProvider>
+      <BrowserRouter>
+        <Switch>
+          <PrivateRoute exact path="/">
+            <Home />
+          </PrivateRoute>
+          <Route path="/login">
+            <Auth />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

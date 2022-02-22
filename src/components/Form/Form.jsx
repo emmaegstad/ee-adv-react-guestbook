@@ -6,8 +6,8 @@ import { addEntry } from '../../services/entries';
 import EntryList from '../EntryList/EntryList';
 
 function Form() {
-  const [name, setName] = useState('');
   const [message, setMessage] = useState('');
+  const [signed, setSigned] = useState(false);
   const { entries, setEntries } = useEntries([]);
   const { user, setUser } = useUser();
 
@@ -15,40 +15,26 @@ function Form() {
     if (!user) {
       setUser(name);
     }
-    const [resp] = await addEntry(name, message);
+    const [resp] = await addEntry(user.name, message);
     setEntries((prevState) => [...prevState, resp]);
     setMessage('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSigned(true);
     updateEntries();
   };
 
   const handleLogout = () => {
     setUser('');
-    setName('');
   };
 
   return (
     <>
       <form className="Form" onSubmit={handleSubmit}>
-        {!user && (
-          <>
-            <h2 className="form-text">Sign Here</h2>
-            <label className="form-label" htmlFor="form-name">
-              Guest Name
-            </label>
-            <input
-              className="form-input"
-              type="text"
-              id="form-name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></input>
-          </>
-        )}
-        {user && <h2 className="form-text">Thanks for signing!</h2>}
+        {!signed && <h2 className="form-text">Sign Here</h2>}
+        {signed && <h2 className="form-text">Thanks for signing!</h2>}
         <label className="form-label" htmlFor="form-message">
           Guest Message
         </label>
@@ -61,13 +47,13 @@ function Form() {
         <div className="form-controls">
           <button className="form-button">SUBMIT</button>
           {user && (
-            <span className="form-logout" onClick={handleLogout}>
-              Not {user}?
-            </span>
+            <button className="form-button" onClick={handleLogout}>
+              LOGOUT
+            </button>
           )}
         </div>
       </form>
-      {entries && <EntryList entries={entries} name={user} />}
+      {entries && <EntryList entries={entries} name={user.name} />}
     </>
   );
 }

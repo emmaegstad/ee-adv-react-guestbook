@@ -6,7 +6,6 @@ import { addEntry } from '../../services/entries';
 import EntryList from '../EntryList/EntryList';
 
 function Form() {
-  const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const { entries, setEntries } = useEntries([]);
   const { user, setUser } = useUser();
@@ -15,7 +14,7 @@ function Form() {
     if (!user) {
       setUser(name);
     }
-    const [resp] = await addEntry(name, message);
+    const [resp] = await addEntry(user.name, message);
     setEntries((prevState) => [...prevState, resp]);
     setMessage('');
   };
@@ -27,7 +26,6 @@ function Form() {
 
   const handleLogout = () => {
     setUser('');
-    setName('');
   };
 
   return (
@@ -44,7 +42,7 @@ function Form() {
               type="text"
               id="form-name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              //   onChange={(e) => setName(e.target.value)}
             ></input>
           </>
         )}
@@ -62,12 +60,12 @@ function Form() {
           <button className="form-button">SUBMIT</button>
           {user && (
             <span className="form-logout" onClick={handleLogout}>
-              Not {user}?
+              Not {user.name}?
             </span>
           )}
         </div>
       </form>
-      {entries && <EntryList entries={entries} name={user} />}
+      {entries && <EntryList entries={entries} name={user.name} />}
     </>
   );
 }

@@ -20,15 +20,14 @@ export default function Auth() {
       setPassword('');
       history.replace('/');
     } else {
-      console.log(process.env.REACT_APP_AUTH_USERNAME);
-      console.log(process.env.REACT_APP_AUTH_PASSWORD);
+      alert("Oops, that didn't work. Please try again!");
     }
   };
 
   return (
     <div className="Auth">
       <label>
-        Username:
+        Name:
         <input
           type="text"
           value={username || ''}
@@ -47,7 +46,9 @@ export default function Auth() {
           }}
         />
       </label>
-      <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      <button className="form-button" onClick={(e) => handleSubmit(e)}>
+        SUBMIT
+      </button>
     </div>
   );
 }

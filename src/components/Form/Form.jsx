@@ -7,6 +7,7 @@ import EntryList from '../EntryList/EntryList';
 
 function Form() {
   const [message, setMessage] = useState('');
+  const [signed, setSigned] = useState(false);
   const { entries, setEntries } = useEntries([]);
   const { user, setUser } = useUser();
 
@@ -21,6 +22,7 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSigned(true);
     updateEntries();
   };
 
@@ -31,22 +33,8 @@ function Form() {
   return (
     <>
       <form className="Form" onSubmit={handleSubmit}>
-        {!user && (
-          <>
-            <h2 className="form-text">Sign Here</h2>
-            <label className="form-label" htmlFor="form-name">
-              Guest Name
-            </label>
-            <input
-              className="form-input"
-              type="text"
-              id="form-name"
-              value={name}
-              //   onChange={(e) => setName(e.target.value)}
-            ></input>
-          </>
-        )}
-        {user && <h2 className="form-text">Thanks for signing!</h2>}
+        {!signed && <h2 className="form-text">Sign Here</h2>}
+        {signed && <h2 className="form-text">Thanks for signing!</h2>}
         <label className="form-label" htmlFor="form-message">
           Guest Message
         </label>
@@ -59,9 +47,9 @@ function Form() {
         <div className="form-controls">
           <button className="form-button">SUBMIT</button>
           {user && (
-            <span className="form-logout" onClick={handleLogout}>
-              Not {user.name}?
-            </span>
+            <button className="form-button" onClick={handleLogout}>
+              LOGOUT
+            </button>
           )}
         </div>
       </form>
